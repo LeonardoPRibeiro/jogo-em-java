@@ -23,7 +23,7 @@ public class ConfsLadrilho {
 	public ConfsLadrilho(Painel painel) {
 		this.painel = painel;
 		
-		ladrilho = new Ladrilho[10];
+		ladrilho = new Ladrilho[10];  //aumenta aqui se precisar colocar mais blocos diferentes, o limite é 10 por enquanto
 		mapNumeroLadrilho = new int[painel.colunasMax][painel.linhasMax];
 		
 		getImagemLadrilho();
@@ -31,13 +31,23 @@ public class ConfsLadrilho {
 	}
 	
 	public void getImagemLadrilho(){
+		
+		//Aqui, cada instância de ladrilho é um bloco novo. ladrilho[0] é o bloco de grama, e assim por diante.
+		//Se quiser adicionar novos blocos, basta fazer do mesmo jeito q ta ai e adiciona a imagem em aps/res/ladrilhos. Só arrastar ela pra lá
+		
+		//Se vcs olharem em aps/res/mapas/map, vai ver um monte de número. Esses números são os números dos ladrilhos, conforme segue o código
+		
+		
 		try {
 			
-			ladrilho[0] = new Ladrilho();
+			ladrilho[0] = new Ladrilho();										//bloco de grama
 			ladrilho[0].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/grass00.png"));
 			
 			ladrilho[1] = new Ladrilho();
 			ladrilho[1].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/agua00.png"));
+			
+			ladrilho[2] = new Ladrilho();
+			ladrilho[2].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/arvore00.png"));
 		}
 		
 		catch(IOException e) {
@@ -45,6 +55,8 @@ public class ConfsLadrilho {
 		}
 	}
 	public void loadMap() {
+		
+		//essa funcao é pra carregar o mapa, que ta em aps/res/mapas
 	    try {
 	        InputStream is = getClass().getResourceAsStream("/mapas/map0.txt" );
 	        if (is == null) {
@@ -79,7 +91,7 @@ public class ConfsLadrilho {
 	    }
 	}
 	public void draw(Graphics g2) {
-		
+		//aqui ele só desenha na tela. Só vai chamar no Painel e no Main
 		int col = 0;
 		int row = 0;
 		int x = 0;

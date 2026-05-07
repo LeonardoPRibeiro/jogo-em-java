@@ -20,12 +20,14 @@ public class Jogador extends Entidade {
 		this.painel = painel;
 		this.tecla = tecla;
 		
+		//Inicia o jogador nos valores padrão e carrega as imagens assim que o objeto é criado
 		setDefaultValues();
 		getImagemJogador();
 	}
 	
 	public void setDefaultValues() {
 		
+		//Configura a posição inicial (X, Y) e a velocidade de movimento do boneco
 		x = 100;
 		y = 100;
 		velocidade = 4;
@@ -33,6 +35,9 @@ public class Jogador extends Entidade {
 	}
 	
 	public void getImagemJogador() {
+		//Aqui são todas as sprites do jogador. Estão vindo da pasta res/jogador
+		//Se quiserem mudar o visual do personagem, é só substituir os arquivos lá com o mesmo nome
+		
 		try {
 			cima1 = ImageIO.read(getClass().getResourceAsStream("/jogador/protagonista_costas1.png"));
 			cima2 = ImageIO.read(getClass().getResourceAsStream("/jogador/protagonista_costas2.png"));
@@ -48,6 +53,9 @@ public class Jogador extends Entidade {
 	}
 	
 	public void update() {
+		
+		//Essa parte verifica se alguma tecla de movimento está sendo pressionada
+		//Se estiver, ele atualiza a direção para desenhar a sprite certa e move o personagem no eixo X ou Y
 		
 		if(tecla.cimaPres == true || tecla.baixoPres == true || tecla.esquerdaPres == true || tecla.direitaPres == true) {
 			if(tecla.cimaPres == true) {
@@ -69,6 +77,9 @@ public class Jogador extends Entidade {
 				x += velocidade;
 			}
 			
+			//Sistema simples de animação: o contador aumenta a cada frame. 
+			//Quando chega em 12, ele troca entre a sprite 1 e 2 (o efeito de "andando")
+			
 			contadorSprite ++;
 			
 			if(contadorSprite > 12){
@@ -89,6 +100,9 @@ public class Jogador extends Entidade {
 	public void draw(Graphics g2) {
 		
 		BufferedImage imagem = null;
+		
+		//O switch decide qual imagem exibir baseado na direção atual e no número da sprite (1 ou 2)
+		//Isso faz o personagem virar para o lado certo e mexer as pernas/braços
 		
 		switch(direcao) {
 		case "cima":
@@ -127,8 +141,7 @@ public class Jogador extends Entidade {
 				}
 				break;
 		}
+		//Desenha o personagem na posição (x, y) com o tamanho definido no Painel (quadradoTam)
 		g2.drawImage(imagem, x, y,painel.quadradoTam,painel.quadradoTam, null);
 	}
-}	
-
-
+}

@@ -1,5 +1,6 @@
 package entidade;
-
+//quase uma classe abstrata, só não é pq n tem métodos.
+//Ta servindo pra "Molde" para todas as entidades que vai ter no jogo.
 import java.awt.image.BufferedImage;
 
 public class Entidade {
