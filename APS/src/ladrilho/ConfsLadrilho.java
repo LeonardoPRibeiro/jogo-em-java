@@ -15,6 +15,8 @@ import java.awt.image.BufferedImage;
 
 public class ConfsLadrilho {
 	
+	
+	
 	Painel painel;
 	Ladrilho[] ladrilho;
 	int mapNumeroLadrilho [] [];
@@ -23,7 +25,7 @@ public class ConfsLadrilho {
 	public ConfsLadrilho(Painel painel) {
 		this.painel = painel;
 		
-		ladrilho = new Ladrilho[10];  //aumenta aqui se precisar colocar mais blocos diferentes, o limite é 10 por enquanto
+		ladrilho = new Ladrilho[20];  //aumenta aqui se precisar colocar mais blocos diferentes, o limite é 10 por enquanto
 		mapNumeroLadrilho = new int[painel.colunasMax][painel.linhasMax];
 		
 		getImagemLadrilho();
@@ -41,13 +43,45 @@ public class ConfsLadrilho {
 		try {
 			
 			ladrilho[0] = new Ladrilho();										//bloco de grama
-			ladrilho[0].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/grass00.png"));
+			ladrilho[0].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/grama00.png"));
 			
 			ladrilho[1] = new Ladrilho();
-			ladrilho[1].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/agua00.png"));
+			ladrilho[1].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/agua01.png"));
 			
 			ladrilho[2] = new Ladrilho();
-			ladrilho[2].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/arvore00.png"));
+			ladrilho[2].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/arvoreFundoGrama02.png"));
+			
+			ladrilho[3] = new Ladrilho();
+			ladrilho[3].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/terra03.png"));
+			
+			ladrilho[4] = new Ladrilho();
+			ladrilho[4].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/ladrilhoPedra04.png"));
+			
+			ladrilho[5] = new Ladrilho();
+			ladrilho[5].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/ladrilhoPedraCorDeAreia05.png"));
+			
+			ladrilho[6] = new Ladrilho();
+			ladrilho[6].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/ladrilhoPedraDiferente06.png"));
+			
+			ladrilho[7] = new Ladrilho();
+			ladrilho[7].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/ladrilhoTijolos07.png"));
+			
+			ladrilho[8] = new Ladrilho();
+			ladrilho[8].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/tijoloArgila08.png"));
+			
+			ladrilho[9] = new Ladrilho();
+			ladrilho[9].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/caminhoBaixoECima09.png"));
+			
+			ladrilho[10] = new Ladrilho();
+			ladrilho[10].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/caminhoEsquerdaDireita10.png"));
+			
+			ladrilho[11] = new Ladrilho();
+			ladrilho[11].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/caminhoCruzamento11.png"));
+			
+			
+			
+			
+			
 		}
 		
 		catch(IOException e) {
@@ -58,7 +92,7 @@ public class ConfsLadrilho {
 		
 		//essa funcao é pra carregar o mapa, que ta em aps/res/mapas
 	    try {
-	        InputStream is = getClass().getResourceAsStream("/mapas/map0.txt" );
+	        InputStream is = getClass().getResourceAsStream("/mapas/mapa.txt" );
 	        if (is == null) {
 	            System.out.println("Erro: Arquivo de mapa não encontrado!");
 	            return;
@@ -96,6 +130,7 @@ public class ConfsLadrilho {
 		int row = 0;
 		int x = 0;
 		int y = 0;
+		
 		
 		while(col < painel.colunasMax && row < painel.linhasMax) {
 			

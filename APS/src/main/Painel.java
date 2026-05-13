@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
@@ -72,7 +73,9 @@ public class Painel extends JPanel implements Runnable {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		Graphics g2 = (Graphics2D)g;
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+		                    RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
 		
 		// Camadas: desenha o mapa primeiro, depois o player por cima
 		cLadrilho.draw(g2);
