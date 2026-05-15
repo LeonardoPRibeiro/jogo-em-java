@@ -16,9 +16,15 @@ public class Jogador extends Entidade {
 	Painel painel;
 	Tecla tecla;
 	
+	public final int telaX;
+	public final int telaY;
+	
 	public Jogador(Painel painel, Tecla tecla) {
 		this.painel = painel;
 		this.tecla = tecla;
+		
+		telaX = painel.larguraTela/2 - (painel.quadradoTam/2);
+		telaY = painel.tamanhoTela/2 - (painel.quadradoTam/2) ;
 		
 		//Inicia o jogador nos valores padrão e carrega as imagens assim que o objeto é criado
 		setDefaultValues();
@@ -28,8 +34,8 @@ public class Jogador extends Entidade {
 	public void setDefaultValues() {
 		
 		//Configura a posição inicial (X, Y) e a velocidade de movimento do boneco
-		x = 100;
-		y = 100;
+		mundoX = painel.quadradoTam * 23;
+		mundoY = painel.quadradoTam * 21;
 		velocidade = 4;
 		direcao = "cima";
 	}
@@ -60,21 +66,21 @@ public class Jogador extends Entidade {
 		if(tecla.cimaPres == true || tecla.baixoPres == true || tecla.esquerdaPres == true || tecla.direitaPres == true) {
 			if(tecla.cimaPres == true) {
 				direcao = "cima";
-				y -= velocidade;
+				mundoY -= velocidade;
 			}
 			if(tecla.baixoPres == true) {
 				direcao = "baixo";
-				y += velocidade;
+				mundoY += velocidade;
 			}
 			
 			if(tecla.esquerdaPres == true) {
 				direcao = "esquerda";
-				x -= velocidade;
+				mundoX -= velocidade;
 			}
 			
 			if(tecla.direitaPres == true) {
 				direcao = "direita";
-				x += velocidade;
+				mundoX += velocidade;
 			}
 			
 			//Sistema simples de animação: o contador aumenta a cada frame. 
@@ -142,6 +148,6 @@ public class Jogador extends Entidade {
 				break;
 		}
 		//Desenha o personagem na posição (x, y) com o tamanho definido no Painel (quadradoTam)
-		g2.drawImage(imagem, x, y,painel.quadradoTam,painel.quadradoTam, null);
+		g2.drawImage(imagem, telaX, telaY, painel.quadradoTam, painel.quadradoTam, null);
 	}
 }

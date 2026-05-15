@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class Entidade {
 	
-	public int x,y;
+	public int mundoX,mundoY;
 	public int velocidade;
 	
 	

@@ -23,12 +23,17 @@ public class Painel extends JPanel implements Runnable {
 	public final int larguraTela = quadradoTam * colunasMax;
 	public final int tamanhoTela = quadradoTam * linhasMax;
 	
+	public final int maxColMundo = 50;
+	public final int maxLinMundo = 50;
+	public final int larguraMundo = quadradoTam * maxColMundo;
+	public final int alturaMundo = quadradoTam * maxLinMundo;
+	
 	int QPS = 60; // FPS do jogo	
 	
 	ConfsLadrilho cLadrilho = new ConfsLadrilho(this);
 	Tecla tecla = new Tecla();
 	Thread jogoThread;
-	Jogador jogador = new Jogador(this, tecla);
+	public Jogador jogador = new Jogador(this, tecla);
 	
 	public Painel() {
 		this.setPreferredSize(new Dimension(larguraTela, tamanhoTela));
