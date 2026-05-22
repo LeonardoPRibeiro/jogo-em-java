@@ -3,6 +3,7 @@ package entidade;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -25,6 +26,14 @@ public class Jogador extends Entidade {
 		
 		telaX = painel.larguraTela/2 - (painel.quadradoTam/2);
 		telaY = painel.tamanhoTela/2 - (painel.quadradoTam/2) ;
+		
+		//setando o retangulo da hitBox
+		
+		hitBox = new Rectangle(8,16, 32, 32);
+		hitBox.x = 0;
+		hitBox.y = 0;
+		hitBox.height = 48;
+		hitBox.width = 48;
 		
 		//Inicia o jogador nos valores padrão e carrega as imagens assim que o objeto é criado
 		setDefaultValues();
@@ -66,25 +75,48 @@ public class Jogador extends Entidade {
 		if(tecla.cimaPres == true || tecla.baixoPres == true || tecla.esquerdaPres == true || tecla.direitaPres == true) {
 			if(tecla.cimaPres == true) {
 				direcao = "cima";
-				mundoY -= velocidade;
+				
 			}
 			if(tecla.baixoPres == true) {
 				direcao = "baixo";
-				mundoY += velocidade;
+			
 			}
 			
 			if(tecla.esquerdaPres == true) {
 				direcao = "esquerda";
-				mundoX -= velocidade;
+				
 			}
 			
 			if(tecla.direitaPres == true) {
 				direcao = "direita";
-				mundoX += velocidade;
 			}
 			
 			//Sistema simples de animação: o contador aumenta a cada frame. 
 			//Quando chega em 12, ele troca entre a sprite 1 e 2 (o efeito de "andando")
+			
+			//checar hitBox
+			hitBoxAtiva = false;
+			painel.VF.verificarLadrilho(this); 
+			
+			//se hitbox falsa, jogador consegue se mover
+			
+			if(hitBoxAtiva == false) {
+				
+				switch(direcao) {
+				case "cima":
+					mundoY -= velocidade;
+					break;
+				case "baixo":
+					mundoY += velocidade;
+					break;
+				case "esquerda":
+					mundoX -= velocidade;
+					break;
+				case "direita":
+					mundoX += velocidade;
+					break;
+				}
+			}
 			
 			contadorSprite ++;
 			

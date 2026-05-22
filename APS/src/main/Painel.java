@@ -33,6 +33,7 @@ public class Painel extends JPanel implements Runnable {
 	ConfsLadrilho cLadrilho = new ConfsLadrilho(this);
 	Tecla tecla = new Tecla();
 	Thread jogoThread;
+	public VerificarColisao VF = new VerificarColisao(this);
 	public Jogador jogador = new Jogador(this, tecla);
 	
 	public Painel() {

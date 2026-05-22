@@ -34,9 +34,11 @@ public class ConfsLadrilho {
             
             ladrilho[1] = new Ladrilho();
             ladrilho[1].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/agua01.png"));
+            ladrilho[1].colisao = true;
             
             ladrilho[2] = new Ladrilho();
             ladrilho[2].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/arvoreFundoGrama02.png"));
+            ladrilho[2].colisao = true;
             
             ladrilho[3] = new Ladrilho();
             ladrilho[3].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/terra03.png"));
@@ -65,23 +67,30 @@ public class ConfsLadrilho {
             ladrilho[11] = new Ladrilho();
             ladrilho[11].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/caminhoCruzamento11.png"));
             
+            //casa
             ladrilho[12] = new Ladrilho();
             ladrilho[12].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/casa_parte1_meio12.png"));
+            ladrilho[12].colisao = true;
             
             ladrilho[13] = new Ladrilho();
             ladrilho[13].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/casa_parte1_teto_direita13.png"));
+            ladrilho[13].colisao = true;
             
             ladrilho[14] = new Ladrilho();
             ladrilho[14].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/casa_parte1_teto_esquerda14.png"));
+            ladrilho[14].colisao = true;
             
             ladrilho[15] = new Ladrilho();
             ladrilho[15].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/casa_parte1_teto_meio15.png"));
+            ladrilho[15].colisao = true;
             
             ladrilho[16] = new Ladrilho();
             ladrilho[16].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/casa_parte1_direita16.png"));
+            ladrilho[16].colisao = true;
             
             ladrilho[17] = new Ladrilho();
             ladrilho[17].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/casa_parte1_esquerda17.png"));
+            ladrilho[1].colisao = true;
             
         } catch(IOException e) {
             e.printStackTrace();
