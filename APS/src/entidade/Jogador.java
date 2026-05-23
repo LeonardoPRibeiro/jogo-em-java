@@ -21,6 +21,9 @@ public class Jogador extends Entidade {
 	public final int telaY;
 	
 	public Jogador(Painel painel, Tecla tecla) {
+		
+		super(painel);
+		
 		this.painel = painel;
 		this.tecla = tecla;
 		

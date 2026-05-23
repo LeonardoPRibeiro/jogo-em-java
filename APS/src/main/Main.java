@@ -20,6 +20,7 @@ public class Main {
 		janela.setVisible(true);
 		
 		painel.startGameThread();
+		painel.setupJogo();
 		
 
 	}

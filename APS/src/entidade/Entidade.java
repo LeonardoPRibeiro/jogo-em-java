@@ -4,8 +4,11 @@ import java.awt.Rectangle;
 //Ta servindo pra "Molde" para todas as entidades que vai ter no jogo.
 import java.awt.image.BufferedImage;
 
+import main.Painel;
+
 public class Entidade {
 	
+	Painel painel;
 	public int mundoX,mundoY;
 	public int velocidade;
 	
@@ -19,5 +22,10 @@ public class Entidade {
     
     public Rectangle hitBox;
     public boolean hitBoxAtiva = false;
+    
+    public Entidade(Painel painel) {
+    	this.painel = painel;
+    	
+    }
     
 }

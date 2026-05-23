@@ -4,61 +4,39 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Tecla implements KeyListener {
-	
-	// Essas variáveis guardam o estado de cada tecla. 
-	// O Jogador.java olha para essas booleans para saber se deve se mover ou não.
-	public boolean cimaPres, baixoPres, esquerdaPres, direitaPres;
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// Não estamos usando este método, mas o Java exige que ele esteja aqui por causa da interface KeyListener
-	}
+    public boolean cimaPres, baixoPres, esquerdaPres, direitaPres, acaoPres; // <-- Garanta que acaoPres está aqui
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		
-		// Este método é chamado quando você aperta uma tecla
-		int codigo = e.getKeyCode();
-		
-		// Verifica se a tecla apertada foi W, A, S ou D e muda o estado para 'true'
-		if(codigo == KeyEvent.VK_W) {
-			cimaPres = true;
-		}
-		
-		if(codigo == KeyEvent.VK_A) {
-			esquerdaPres = true;
-		}
-		
-		if(codigo == KeyEvent.VK_S) {
-			baixoPres = true;
-		}
-		
-		if(codigo == KeyEvent.VK_D) {
-			direitaPres = true;
-		}
-	}
+    @Override
+    public void keyTyped(KeyEvent e) {}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		
-		// Importante: quando você solta a tecla, precisamos avisar ao programa que o movimento parou
-		int codigo = e.getKeyCode();
-		
-		// Volta o estado para 'false' assim que o dedo sai da tecla
-		if(codigo == KeyEvent.VK_W) {
-			cimaPres = false;
-		}
-		
-		if(codigo == KeyEvent.VK_A) {
-			esquerdaPres = false;
-		}
-		
-		if(codigo == KeyEvent.VK_S) {
-			baixoPres = false;
-		}
-		
-		if(codigo == KeyEvent.VK_D) {
-			direitaPres = false;
-		}
-	}
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int code = e.getKeyCode();
+
+        if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP) { cimaPres = true; }
+        if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) { baixoPres = true; }
+        if(code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) { esquerdaPres = true; }
+        if(code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) { direitaPres = true; }
+        
+        // SE ESTIVER USANDO A TECLA "E":
+        if(code == KeyEvent.VK_E) { 
+            acaoPres = true; 
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int code = e.getKeyCode();
+
+        if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP) { cimaPres = false; }
+        if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) { baixoPres = false; }
+        if(code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) { esquerdaPres = false; }
+        if(code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) { direitaPres = false; }
+        
+        // ADICIONE ISSO TAMBÉM:
+        if(code == KeyEvent.VK_E) { 
+            acaoPres = false; 
+        }
+    }
 }
