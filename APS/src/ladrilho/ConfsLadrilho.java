@@ -18,7 +18,7 @@ public class ConfsLadrilho {
         this.painel = painel;
         
         //array de sprites de ambiente
-        ladrilho = new Ladrilho[30]; 
+        ladrilho = new Ladrilho[35]; 
         
         // Inicializa a matriz do mapa 50x50
         mapNumeroLadrilho = new int[painel.maxColMundo][painel.maxLinMundo];
@@ -107,6 +107,34 @@ public class ConfsLadrilho {
             ladrilho[21].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/predio1_21.png"));
             ladrilho[21].colisao = false;
            
+            ladrilho[22] = new Ladrilho();
+            ladrilho[22].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/porta_casa1_8.png"));
+            
+            ladrilho[23] = new Ladrilho();
+            ladrilho[23].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/predio11_23.png"));
+            
+            ladrilho[24] = new Ladrilho();
+            ladrilho[24].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/predio12_24.png"));
+            
+            ladrilho[25] = new Ladrilho();
+            ladrilho[25].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/predio13_25.png"));
+            
+            ladrilho[26] = new Ladrilho();
+            ladrilho[26].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/predio14_26.png"));
+            
+            ladrilho[27] = new Ladrilho();
+            ladrilho[27].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/lixeiras_27.png"));
+            
+            ladrilho[28] = new Ladrilho();
+            ladrilho[28].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/semaforo_28.png"));
+            
+            ladrilho[29] = new Ladrilho();
+            ladrilho[29].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/faixaPedestreH_29.png"));
+            
+            ladrilho[30] = new Ladrilho();
+            ladrilho[30].image = ImageIO.read(getClass().getResourceAsStream("/ladrilhos/faixaPedestreV_30.png"));
+            
+            
             
             
             

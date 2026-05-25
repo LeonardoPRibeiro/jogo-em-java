@@ -9,6 +9,15 @@ import javax.swing.JPanel;
 
 import entidade.Jogador;
 import entidade.Npc_1;
+import entidade.Npc_10;
+import entidade.Npc_2;
+import entidade.Npc_3;
+import entidade.Npc_4;
+import entidade.Npc_5;
+import entidade.Npc_6;
+import entidade.Npc_7;
+import entidade.Npc_8;
+import entidade.Npc_9;
 import ladrilho.ConfsLadrilho;
 
 public class Painel extends JPanel implements Runnable {
@@ -28,11 +37,15 @@ public class Painel extends JPanel implements Runnable {
 	int QPS = 60; 
 	
 	ConfsLadrilho cLadrilho = new ConfsLadrilho(this);
-	public Tecla tecla = new Tecla(); // Mudado para public para o jogador acessar
+	public Tecla tecla = new Tecla(); 
 	Thread jogoThread;
 	public VerificarColisao VF = new VerificarColisao(this);
+	
+	// ---> O JOGADOR VOLTOU AQUI <---
 	public Jogador jogador = new Jogador(this, tecla);
-	public Npc_1 meuNpc = new Npc_1(this);
+	
+	// Cria uma lista (Array) vazia que pode guardar até 10 NPCs
+	public Npc_1[] npcs = new Npc_1[10];
 	
 	// ---- SISTEMA DE ESTADOS E INTERFACE ----
 	public InterfaceUsuario iu = new InterfaceUsuario(this);
@@ -48,16 +61,62 @@ public class Painel extends JPanel implements Runnable {
 		this.addKeyListener(tecla);   
 		this.setFocusable(true);      
 		
-		// O jogo começa no estado normal (andando)
 		estadoJogo = estadoNormal;
 	}
 	
 	public void setupJogo() {
-		// Define a posição do NPC no mapa (Ex: Coluna 15, Linha 15)
-		meuNpc.mundoX = quadradoTam * 32;
-		meuNpc.mundoY = quadradoTam * 6;
+		// Espalhando os 10 NPCs pelas regiões que usam o número 17 no mapa
+		
+		// NPC 1 - Canto superior esquerdo do mapa
+		npcs[0] = new Npc_1(this);
+		npcs[0].mundoX = quadradoTam * 3; 
+		npcs[0].mundoY = quadradoTam * 3;  
+		
+		
+		npcs[1] = new Npc_2(this);
+		npcs[1].mundoX = quadradoTam * 5;  
+		npcs[1].mundoY = quadradoTam * 7; 
+		
+		
+		npcs[2] = new Npc_3(this);
+		npcs[2].mundoX = quadradoTam * 2; 
+		npcs[2].mundoY = quadradoTam * 23; 
+		
+		// NPC 4 - Região central-esquerda
+		npcs[3] = new Npc_4(this);
+		npcs[3].mundoX = quadradoTam * 4; 
+		npcs[3].mundoY = quadradoTam * 38; 
+		
+		
+		npcs[4] = new Npc_5(this);
+		npcs[4].mundoX = quadradoTam * 3;  
+		npcs[4].mundoY = quadradoTam * 46; 
+		
+		
+		npcs[5] = new Npc_6(this);
+		npcs[5].mundoX = quadradoTam * 20; 
+		npcs[5].mundoY = quadradoTam * 34; 
+		
+		
+		npcs[6] = new Npc_7(this);
+		npcs[6].mundoX = quadradoTam * 30; 
+		npcs[6].mundoY = quadradoTam * 34; 
+		
+		
+		npcs[7] = new Npc_8(this);
+		npcs[7].mundoX = quadradoTam * 45; 
+		npcs[7].mundoY = quadradoTam * 5; 
+		
+		// NPC 9 - Região centro-direita
+		npcs[8] = new Npc_9(this);
+		npcs[8].mundoX = quadradoTam * 47; 
+		npcs[8].mundoY = quadradoTam * 36; 
+		
+		
+		npcs[9] = new Npc_10(this);
+		npcs[9].mundoX = quadradoTam * 44; 
+		npcs[9].mundoY = quadradoTam * 47; 
 	}
-
 	public void startGameThread() {
 		jogoThread = new Thread(this);
 		jogoThread.start();
@@ -86,31 +145,40 @@ public class Painel extends JPanel implements Runnable {
 	public void update() {
 		if(estadoJogo == estadoNormal) {
 			jogador.update();
-			meuNpc.update();
+			
+			// O For faz todos os 10 NPCs atualizarem de uma vez só
+			for(int i = 0; i < npcs.length; i++) {
+				if(npcs[i] != null) {
+					npcs[i].update();
+				}
+			}
+			
 			checarProximidadeNpc();
 		}
 		else if(estadoJogo == estadoDialogo) {
-			// Se estiver no diálogo e apertar "E" de novo, fecha o diálogo
 			if(tecla.acaoPres == true) {
-				// Pequeno truque para não fechar instantaneamente: desativa a tecla
 				tecla.acaoPres = false; 
 				estadoJogo = estadoNormal;
 			}
 		}
 	}
 
-	// Método que calcula a distância entre o jogador e o NPC
 	public void checarProximidadeNpc() {
-		int distanciaX = Math.abs(jogador.mundoX - meuNpc.mundoX);
-		int distanciaY = Math.abs(jogador.mundoY - meuNpc.mundoY);
+		// calcula a distância do jogador para CADA UM dos 10 NPCs da lista
+		for(int i = 0; i < npcs.length; i++) {
+			
+			if(npcs[i] != null) {
+				int distanciaX = Math.abs(jogador.mundoX - npcs[i].mundoX);
+				int distanciaY = Math.abs(jogador.mundoY - npcs[i].mundoY);
 
-		// Se o jogador estiver a menos de 1 bloco e meio de distância 
-		if(distanciaX < 72 && distanciaY < 72) {
-			// E se ele apertar a tecla E
-			if(tecla.acaoPres == true) {
-				tecla.acaoPres = false; // Reseta a tecla
-				iu.mensagemAtual = meuNpc.dica; // Passa a dica do NPC para a tela
-				estadoJogo = estadoDialogo; // Muda o estado do jogo para exibir o texto
+				if(distanciaX < 72 && distanciaY < 72) {
+					if(tecla.acaoPres == true) {
+						tecla.acaoPres = false; 
+						iu.mensagemAtual = npcs[i].dica; // Pega a dica certa do NPC atual
+						estadoJogo = estadoDialogo; 
+						break; 
+					}
+				}
 			}
 		}
 	}
@@ -120,18 +188,19 @@ public class Painel extends JPanel implements Runnable {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
 		
-		// 1. Desenha o Cenário
 		cLadrilho.draw(g2);
 		
-		// 2. Desenha o NPC
-		meuNpc.draw(g2);
+		// O For desenha todos os 10 NPCs na tela
+		for(int i = 0; i < npcs.length; i++) {
+			if(npcs[i] != null) {
+				npcs[i].draw(g2);
+			}
+		}
 		
-		// 3. Desenha o Jogador
 		jogador.draw(g2);
 		
-		// 4. Desenha a Interface (Dicas/Diálogos) por cima de tudo
 		iu.draw(g2);
 		
-		g2.dispose(); 
+		g2.dispose();
 	}
 }
