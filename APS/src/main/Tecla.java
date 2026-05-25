@@ -23,7 +23,6 @@ public class Tecla implements KeyListener {
         if(code == KeyEvent.VK_3) { num3 = true; }
         if(code == KeyEvent.VK_ENTER) { enterPres = true; }
         
-        // SE ESTIVER USANDO A TECLA "E":
         if(code == KeyEvent.VK_E) { 
             acaoPres = true; 
         }
@@ -41,7 +40,7 @@ public class Tecla implements KeyListener {
         if(code == KeyEvent.VK_2) { num2 = false; }
         if(code == KeyEvent.VK_3) { num3 = false; }
         if(code == KeyEvent.VK_ENTER) { enterPres = false; }
-        // ADICIONE ISSO TAMBÉM:
+       
         if(code == KeyEvent.VK_E) { 
             acaoPres = false; 
         }

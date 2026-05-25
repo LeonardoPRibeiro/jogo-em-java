@@ -24,6 +24,10 @@ import ladrilho.ConfsLadrilho;
 
 public class Painel extends JPanel implements Runnable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	final int tamOriginalQuadrado = 16;
 	final int escala = 3;
 	
@@ -138,7 +142,7 @@ public class Painel extends JPanel implements Runnable {
 			}
 		}
 	}
-		
+	
 	public void update() {
 		if(estadoJogo == estadoNormal) {
 			jogador.update();
@@ -166,9 +170,9 @@ public class Painel extends JPanel implements Runnable {
 			gerenciarLogicaQuiz();
 		}
 	}
-
+	// Calcula a distância do jogador pra cada um dos 10 NPCs da lista, e no final o bvoss
 	public void checarProximidadeNpc() {
-		// Calcula a distância do jogador para CADA UM dos 10 NPCs da lista
+		
 		for(int i = 0; i < npcs.length; i++) {
 			if(npcs[i] != null) {
 				int distanciaX = Math.abs(jogador.mundoX - npcs[i].mundoX);
@@ -243,14 +247,14 @@ public class Painel extends JPanel implements Runnable {
 		
 		cLadrilho.draw(g2);
 		
-		// O For desenha todos os 10 NPCs na tela
+		//desenha todos os 10 NPCs na tela
 		for(int i = 0; i < npcs.length; i++) {
 			if(npcs[i] != null) {
 				npcs[i].draw(g2);
 			}
 		}
 		
-		// ---> CORRIGIDO: Renderiza o Boss na tela de jogo <---
+		//desenha o boss
 		boss.draw(g2);
 		
 		jogador.draw(g2);
