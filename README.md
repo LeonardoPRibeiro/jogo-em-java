@@ -26,7 +26,7 @@ Autores
 -------------------------------------------------------------
 Lucas da Silva Rocha
 Leonardo Pereira Ribeiro
-Rafael Santos Pedrosa
+Rafael Pedrosa dos Santos 
 
 
 
